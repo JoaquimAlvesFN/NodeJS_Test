@@ -15,7 +15,7 @@ module.exports = {
         let dev = await Dev.findOne({ github_username });
 
         if (!dev) {
-            const response = await axios.get(`https://api.github.com/users/${github_username}`);
+            const response = await axios.get(`https://api.github.com/users/${github_username}`).catch(err => console.log(err));
     
             const { name = login, avatar_url, bio} = response.data;
             const techsArray = parseStringAsArray(techs);
